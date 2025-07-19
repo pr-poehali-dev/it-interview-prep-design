@@ -91,7 +91,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-border bg-background sticky top-0 z-50">
+      <header className="border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-6 py-6">
           <nav className="flex items-center justify-between">
             <div className="text-xl font-semibold text-foreground">
@@ -113,7 +113,7 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="py-24 px-6">
+      <section className="py-24 px-6 bg-gradient-to-b from-background to-secondary/20">
         <div className="container mx-auto text-center">
           <div className="max-w-2xl mx-auto space-y-8">
             <h1 className="text-5xl md:text-6xl font-light tracking-tight text-foreground">
@@ -123,7 +123,7 @@ const Index = () => {
               Структурированная база знаний для успешного прохождения интервью в IT
             </p>
             <div className="pt-4">
-              <Button size="lg" className="text-base px-8 py-3">
+              <Button size="lg" className="text-base px-8 py-3 bg-primary/90 hover:bg-primary">
                 Начать изучение
               </Button>
             </div>
@@ -132,7 +132,7 @@ const Index = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 px-6 border-t border-border">
+      <section className="py-16 px-6 border-t border-border bg-muted/30">
         <div className="container mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center space-y-2">
@@ -156,7 +156,7 @@ const Index = () => {
       </section>
 
       {/* Questions Section */}
-      <section id="questions" className="py-20 px-6 border-t border-border">
+      <section id="questions" className="py-20 px-6 border-t border-border bg-accent/30">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16 space-y-4">
@@ -184,7 +184,7 @@ const Index = () => {
             {/* Questions Grid */}
             <div className="space-y-4">
               {filteredQuestions.map((question) => (
-                <Card key={question.id} className="border border-border hover:shadow-sm transition-shadow duration-200">
+                <Card key={question.id} className="border border-border hover:shadow-sm transition-all duration-200 bg-card/80 backdrop-blur-sm hover:bg-card">
                   <CardHeader className="pb-4">
                     <div className="flex items-start justify-between gap-4">
                       <div className="space-y-2 flex-1">
@@ -236,14 +236,14 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 border-t border-border">
+      <section className="py-20 px-6 border-t border-border bg-gradient-to-b from-secondary/20 to-muted/40">
         <div className="container mx-auto text-center">
           <div className="max-w-lg mx-auto space-y-6">
             <h2 className="text-2xl font-light text-foreground">Начните подготовку</h2>
             <p className="text-muted-foreground text-sm">
               Присоединяйтесь к сообществу разработчиков
             </p>
-            <Button className="text-sm px-6">
+            <Button className="text-sm px-6 bg-primary/90 hover:bg-primary">
               Зарегистрироваться
             </Button>
           </div>
@@ -251,7 +251,7 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 border-t border-border">
+      <footer className="py-12 px-6 border-t border-border bg-muted/20">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
