@@ -9,13 +9,13 @@ const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   const questionCategories = [
-    { id: 'all', name: 'Все вопросы', count: 156 },
+    { id: 'all', name: 'Все', count: 156 },
     { id: 'javascript', name: 'JavaScript', count: 45 },
     { id: 'react', name: 'React', count: 32 },
     { id: 'algorithms', name: 'Алгоритмы', count: 28 },
     { id: 'system-design', name: 'System Design', count: 18 },
-    { id: 'databases', name: 'Базы данных', count: 23 },
-    { id: 'css', name: 'CSS/HTML', count: 10 }
+    { id: 'databases', name: 'БД', count: 23 },
+    { id: 'css', name: 'CSS', count: 10 }
   ];
 
   const questionCards = [
@@ -25,7 +25,7 @@ const Index = () => {
       description: 'Объясните концепцию замыканий и приведите примеры использования',
       category: 'javascript',
       difficulty: 'Medium',
-      tags: ['Функции', 'Scope', 'Основы'],
+      tags: ['Функции', 'Scope'],
       answer: 'Замыкание - это функция, которая имеет доступ к переменным из внешней области видимости даже после того, как внешняя функция завершила выполнение.'
     },
     {
@@ -34,7 +34,7 @@ const Index = () => {
       description: 'Объясните различия в области видимости и поведении',
       category: 'javascript',
       difficulty: 'Easy',
-      tags: ['Переменные', 'ES6', 'Основы'],
+      tags: ['Переменные', 'ES6'],
       answer: 'var имеет функциональную область видимости, let и const - блочную. const нельзя переопределить, var поднимается наверх.'
     },
     {
@@ -43,7 +43,7 @@ const Index = () => {
       description: 'Опишите основные методы жизненного цикла',
       category: 'react',
       difficulty: 'Medium',
-      tags: ['Lifecycle', 'Hooks', 'Компоненты'],
+      tags: ['Lifecycle', 'Hooks'],
       answer: 'Основные этапы: mounting (componentDidMount), updating (componentDidUpdate), unmounting (componentWillUnmount). В функциональных компонентах используется useEffect.'
     },
     {
@@ -52,7 +52,7 @@ const Index = () => {
       description: 'Реализуйте bubble sort и объясните временную сложность',
       category: 'algorithms',
       difficulty: 'Easy',
-      tags: ['Сортировка', 'O(n²)', 'Базовые алгоритмы'],
+      tags: ['Сортировка', 'O(n²)'],
       answer: 'Bubble sort сравнивает соседние элементы и меняет их местами. Временная сложность O(n²), пространственная O(1).'
     },
     {
@@ -61,7 +61,7 @@ const Index = () => {
       description: 'Объясните назначение и типы индексов в базах данных',
       category: 'databases',
       difficulty: 'Medium',
-      tags: ['SQL', 'Производительность', 'Индексирование'],
+      tags: ['SQL', 'Производительность'],
       answer: 'Индексы ускоряют поиск данных, создавая структуру для быстрого доступа. Типы: B-tree, Hash, Bitmap.'
     },
     {
@@ -70,7 +70,7 @@ const Index = () => {
       description: 'Когда использовать Grid, а когда Flexbox?',
       category: 'css',
       difficulty: 'Medium',
-      tags: ['Layout', 'CSS Grid', 'Flexbox'],
+      tags: ['Layout', 'CSS Grid'],
       answer: 'Flexbox для одномерных макетов (строка или столбец), Grid для двумерных (строки и столбцы одновременно).'
     }
   ];
@@ -82,30 +82,26 @@ const Index = () => {
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case 'Easy': return 'bg-secondary text-secondary-foreground';
-      case 'Medium': return 'bg-primary text-primary-foreground';
-      case 'Hard': return 'bg-destructive text-destructive-foreground';
+      case 'Medium': return 'bg-muted text-muted-foreground';
+      case 'Hard': return 'bg-primary text-primary-foreground';
       default: return 'bg-muted text-muted-foreground';
     }
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-border backdrop-blur-sm bg-background/80 sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
+      <header className="border-b border-border bg-background sticky top-0 z-50">
+        <div className="container mx-auto px-6 py-6">
           <nav className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <div className="text-2xl font-mono font-bold text-primary flex items-center">
-                <Icon name="Terminal" className="mr-2" />
-                IT Interview Prep
-              </div>
+            <div className="text-xl font-semibold text-foreground">
+              Interview Prep
             </div>
-            <div className="hidden md:flex items-center space-x-6">
-              <a href="#questions" className="text-foreground hover:text-primary transition-colors">Вопросы</a>
-              <a href="#practice" className="text-foreground hover:text-primary transition-colors">Практика</a>
-              <a href="#progress" className="text-foreground hover:text-primary transition-colors">Прогресс</a>
-              <Button variant="outline" size="sm">
-                <Icon name="User" className="mr-2 h-4 w-4" />
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#questions" className="text-muted-foreground hover:text-foreground transition-colors text-sm">Вопросы</a>
+              <a href="#practice" className="text-muted-foreground hover:text-foreground transition-colors text-sm">Практика</a>
+              <a href="#progress" className="text-muted-foreground hover:text-foreground transition-colors text-sm">Прогресс</a>
+              <Button variant="ghost" size="sm" className="text-sm">
                 Вход
               </Button>
             </div>
@@ -117,214 +113,178 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 px-4 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10" />
-        <div className="container mx-auto relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Подготовься к IT-собеседованию
+      <section className="py-24 px-6">
+        <div className="container mx-auto text-center">
+          <div className="max-w-2xl mx-auto space-y-8">
+            <h1 className="text-5xl md:text-6xl font-light tracking-tight text-foreground">
+              Подготовка к собеседованию
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Изучай вопросы, практикуйся в решении задач и получай оферы в топовых IT-компаниях
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Структурированная база знаний для успешного прохождения интервью в IT
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="text-lg px-8 py-3">
-                <Icon name="Play" className="mr-2" />
-                Начать подготовку
-              </Button>
-              <Button variant="outline" size="lg" className="text-lg px-8 py-3">
-                <Icon name="BookOpen" className="mr-2" />
-                Посмотреть вопросы
+            <div className="pt-4">
+              <Button size="lg" className="text-base px-8 py-3">
+                Начать изучение
               </Button>
             </div>
           </div>
         </div>
-        
-        {/* Code decoration */}
-        <div className="absolute top-10 left-10 opacity-20 font-mono text-sm">
-          <pre>{`const interview = {
-  prepare: true,
-  practice: 'daily',
-  success: 100
-};`}</pre>
-        </div>
-        <div className="absolute bottom-10 right-10 opacity-20 font-mono text-sm">
-          <pre>{`function getJob() {
-  return 'dream offer';
-}`}</pre>
-        </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 px-4 bg-card">
+      <section className="py-16 px-6 border-t border-border">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-            <div className="space-y-2">
-              <div className="text-4xl font-bold text-primary">156+</div>
-              <div className="text-muted-foreground">Вопросов</div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center space-y-2">
+              <div className="text-3xl font-light text-foreground">156</div>
+              <div className="text-sm text-muted-foreground">Вопросов</div>
             </div>
-            <div className="space-y-2">
-              <div className="text-4xl font-bold text-primary">50+</div>
-              <div className="text-muted-foreground">Алгоритмов</div>
+            <div className="text-center space-y-2">
+              <div className="text-3xl font-light text-foreground">50</div>
+              <div className="text-sm text-muted-foreground">Алгоритмов</div>
             </div>
-            <div className="space-y-2">
-              <div className="text-4xl font-bold text-primary">1200+</div>
-              <div className="text-muted-foreground">Студентов</div>
+            <div className="text-center space-y-2">
+              <div className="text-3xl font-light text-foreground">1,2k</div>
+              <div className="text-sm text-muted-foreground">Студентов</div>
             </div>
-            <div className="space-y-2">
-              <div className="text-4xl font-bold text-primary">89%</div>
-              <div className="text-muted-foreground">Успешных собеседований</div>
+            <div className="text-center space-y-2">
+              <div className="text-3xl font-light text-foreground">89%</div>
+              <div className="text-sm text-muted-foreground">Успеха</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Questions Section */}
-      <section id="questions" className="py-16 px-4">
+      <section id="questions" className="py-20 px-6 border-t border-border">
         <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Банк вопросов</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Изучай популярные вопросы с собеседований в ведущих IT-компаниях
-            </p>
-          </div>
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16 space-y-4">
+              <h2 className="text-3xl font-light text-foreground">Банк вопросов</h2>
+              <p className="text-muted-foreground">
+                Часто задаваемые вопросы на собеседованиях
+              </p>
+            </div>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap gap-2 justify-center mb-8">
-            {questionCategories.map((category) => (
-              <Button
-                key={category.id}
-                variant={selectedCategory === category.id ? "default" : "outline"}
-                onClick={() => setSelectedCategory(category.id)}
-                className="transition-all"
-              >
-                {category.name}
-                <Badge variant="secondary" className="ml-2">
-                  {category.count}
-                </Badge>
-              </Button>
-            ))}
-          </div>
+            {/* Category Filter */}
+            <div className="flex flex-wrap gap-2 justify-center mb-12">
+              {questionCategories.map((category) => (
+                <Button
+                  key={category.id}
+                  variant={selectedCategory === category.id ? "default" : "ghost"}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className="text-sm"
+                  size="sm"
+                >
+                  {category.name} <span className="ml-1 text-xs opacity-60">{category.count}</span>
+                </Button>
+              ))}
+            </div>
 
-          {/* Questions Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredQuestions.map((question) => (
-              <Card key={question.id} className="hover:shadow-lg transition-all duration-300 border-l-4 border-l-primary">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <CardTitle className="text-lg leading-tight pr-2">
-                      {question.title}
-                    </CardTitle>
-                    <Badge className={getDifficultyColor(question.difficulty)}>
-                      {question.difficulty}
-                    </Badge>
-                  </div>
-                  <CardDescription className="text-sm">
-                    {question.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex flex-wrap gap-1">
-                      {question.tags.map((tag) => (
-                        <Badge key={tag} variant="outline" className="text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
+            {/* Questions Grid */}
+            <div className="space-y-4">
+              {filteredQuestions.map((question) => (
+                <Card key={question.id} className="border border-border hover:shadow-sm transition-shadow duration-200">
+                  <CardHeader className="pb-4">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="space-y-2 flex-1">
+                        <CardTitle className="text-lg font-medium leading-snug">
+                          {question.title}
+                        </CardTitle>
+                        <CardDescription className="text-sm">
+                          {question.description}
+                        </CardDescription>
+                      </div>
+                      <Badge variant="secondary" className="text-xs shrink-0">
+                        {question.difficulty}
+                      </Badge>
                     </div>
-                    
-                    <Accordion type="single" collapsible>
-                      <AccordionItem value="answer" className="border-none">
-                        <AccordionTrigger className="text-sm hover:no-underline py-2">
-                          <div className="flex items-center">
-                            <Icon name="Eye" className="mr-2 h-4 w-4" />
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="space-y-4">
+                      <div className="flex flex-wrap gap-1">
+                        {question.tags.map((tag) => (
+                          <Badge key={tag} variant="outline" className="text-xs font-normal">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                      
+                      <Accordion type="single" collapsible>
+                        <AccordionItem value="answer" className="border-none">
+                          <AccordionTrigger className="text-sm hover:no-underline py-3 text-muted-foreground">
                             Показать ответ
-                          </div>
-                        </AccordionTrigger>
-                        <AccordionContent className="text-sm text-muted-foreground pt-2">
-                          {question.answer}
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                    
-                    <div className="flex gap-2">
-                      <Button size="sm" variant="outline" className="flex-1">
-                        <Icon name="Bookmark" className="mr-1 h-3 w-3" />
-                        Сохранить
-                      </Button>
-                      <Button size="sm" variant="outline" className="flex-1">
-                        <Icon name="Share" className="mr-1 h-3 w-3" />
-                        Поделиться
-                      </Button>
+                          </AccordionTrigger>
+                          <AccordionContent className="text-sm text-muted-foreground leading-relaxed pt-2">
+                            {question.answer}
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
 
-          <div className="text-center mt-12">
-            <Button size="lg" variant="outline">
-              <Icon name="Plus" className="mr-2" />
-              Загрузить ещё вопросы
-            </Button>
+            <div className="text-center mt-12">
+              <Button variant="ghost" size="sm">
+                Показать больше
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4 bg-gradient-to-r from-primary/10 to-secondary/10">
+      <section className="py-20 px-6 border-t border-border">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Готов начать подготовку?</h2>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Присоединяйся к тысячам разработчиков, которые уже получили работу мечты
-          </p>
-          <Button size="lg" className="text-lg px-8 py-3">
-            <Icon name="Rocket" className="mr-2" />
-            Начать бесплатно
-          </Button>
+          <div className="max-w-lg mx-auto space-y-6">
+            <h2 className="text-2xl font-light text-foreground">Начните подготовку</h2>
+            <p className="text-muted-foreground text-sm">
+              Присоединяйтесь к сообществу разработчиков
+            </p>
+            <Button className="text-sm px-6">
+              Зарегистрироваться
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 bg-card border-t">
+      <footer className="py-12 px-6 border-t border-border">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <div className="font-mono font-bold text-xl text-primary">
-                IT Interview Prep
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+              <div className="space-y-3">
+                <div className="font-medium text-foreground text-sm">
+                  Interview Prep
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Платформа для подготовки к собеседованиям
+                </p>
               </div>
-              <p className="text-sm text-muted-foreground">
-                Платформа для подготовки к собеседованиям в IT
+              <div className="space-y-3">
+                <h3 className="text-sm font-medium text-foreground">Материалы</h3>
+                <div className="space-y-2 text-xs">
+                  <div><a href="#" className="text-muted-foreground hover:text-foreground">Вопросы</a></div>
+                  <div><a href="#" className="text-muted-foreground hover:text-foreground">Алгоритмы</a></div>
+                  <div><a href="#" className="text-muted-foreground hover:text-foreground">Системы</a></div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <h3 className="text-sm font-medium text-foreground">Контакты</h3>
+                <div className="space-y-2 text-xs">
+                  <div><a href="#" className="text-muted-foreground hover:text-foreground">Поддержка</a></div>
+                  <div><a href="#" className="text-muted-foreground hover:text-foreground">Telegram</a></div>
+                  <div><a href="#" className="text-muted-foreground hover:text-foreground">GitHub</a></div>
+                </div>
+              </div>
+            </div>
+            <div className="border-t border-border pt-6">
+              <p className="text-xs text-muted-foreground text-center">
+                © 2024 Interview Prep
               </p>
             </div>
-            <div className="space-y-4">
-              <h3 className="font-semibold">Продукт</h3>
-              <div className="space-y-2 text-sm">
-                <div><a href="#" className="text-muted-foreground hover:text-foreground">Вопросы</a></div>
-                <div><a href="#" className="text-muted-foreground hover:text-foreground">Алгоритмы</a></div>
-                <div><a href="#" className="text-muted-foreground hover:text-foreground">Системное проектирование</a></div>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <h3 className="font-semibold">Ресурсы</h3>
-              <div className="space-y-2 text-sm">
-                <div><a href="#" className="text-muted-foreground hover:text-foreground">Блог</a></div>
-                <div><a href="#" className="text-muted-foreground hover:text-foreground">Гайды</a></div>
-                <div><a href="#" className="text-muted-foreground hover:text-foreground">FAQ</a></div>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <h3 className="font-semibold">Связь</h3>
-              <div className="space-y-2 text-sm">
-                <div><a href="#" className="text-muted-foreground hover:text-foreground">Поддержка</a></div>
-                <div><a href="#" className="text-muted-foreground hover:text-foreground">Telegram</a></div>
-                <div><a href="#" className="text-muted-foreground hover:text-foreground">GitHub</a></div>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-            © 2024 IT Interview Prep. Все права защищены.
           </div>
         </div>
       </footer>
